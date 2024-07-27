@@ -59,6 +59,7 @@ extern int getIndiceTablero(GLfloat coord);
 extern int nivel;
 extern int puntaje; 
 extern int tiempoJuego; //milisegundos
+extern int cantidad_enemigos_actual;
 extern float velocidad_juego;
 extern bool puertaAbierta;
 extern bool temporizador;
@@ -69,6 +70,7 @@ extern chrono::high_resolution_clock::time_point marca_tiempo_anterior, marca_ti
 
 extern void toggle(bool& valor);
 
+extern void inicializarAtributosJuego();
 extern void aumentarNivel();
 extern void sumarPuntaje(int puntos);
 extern void disminuirTiempo(GLfloat milisegundos);

@@ -43,8 +43,6 @@ private:
 	SDL_Window* window;
 	SDL_GLContext context;
 	SDL_Event evento;
-
-	int cantidad_enemigos_actual;
 public:
 	static Controlador* getInstance();
 	~Controlador();

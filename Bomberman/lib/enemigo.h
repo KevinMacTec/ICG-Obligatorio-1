@@ -40,7 +40,7 @@ public:
 	void actualizar();
 	void dibujar();
 
-	enemigo::~enemigo();
+	~enemigo();
 };
 
 #endif

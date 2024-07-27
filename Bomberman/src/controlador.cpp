@@ -27,14 +27,18 @@ void eliminarEstructuras(vector_3 pos, bool isOrientacionX, int num) {
 }
 
 void Controlador::inicializar_juego() {
+    
+    inicializarAtributosJuego();
+    ControladorPoderes* controladorPoderes = ControladorPoderes::getInstance();
+    controladorPoderes->resetearPoderes();
+
     if (jugador == nullptr) {
         jugador = new bomberman(
             { tile_size / 2, 0, tile_size / 2 },
             { tile_size / 6, tile_size / 2, tile_size / 6 },
             0.1f
         );
-    }
-    else {
+    } else {
         jugador->setPosicionX(tile_size / 2);
         jugador->setPosicionY(0);
         jugador->setPosicionZ(tile_size / 2);
@@ -206,8 +210,6 @@ void Controlador::inicializar_juego() {
     }
 
     marca_tiempo_anterior = chrono::high_resolution_clock::now();
-    puertaAbierta = false;
-    temporizador = false;
 }
 
 Controlador::Controlador() {
@@ -217,8 +219,6 @@ Controlador::Controlador() {
         fuegos[i] = new objeto * [anchoTablero];
         bonificadores[i] = new objeto * [anchoTablero];
     }
-
-    cantidad_enemigos_actual = 4;
 
     inicializar_juego();
 
@@ -428,10 +428,11 @@ void Controlador::manejarEventos() {
         moverArriba = false; moverAbajo = false; moverDerecha = false; moverIzquierda = false;
         while (SDL_PollEvent(&evento)) {
             if (evento.type == SDL_KEYUP) {
-                if (evento.key.keysym.sym == SDLK_ESCAPE)
+                if (evento.key.keysym.sym == SDLK_ESCAPE) {
                     fin = true;
-                else if (evento.key.keysym.sym == SDLK_p)
-                    toggle(pausa);
+                } else {
+                    inicializar_juego();
+                }
             }
         }
         return;
@@ -609,7 +610,6 @@ void Controlador::actualizar() {
     if (puertaAbierta && door->intersecta(jugador)) {
         controlador_audio->playAudio(sonido::inicioJuego);
         controlador_poderes->resetearPoderes();
-        cantidad_enemigos_actual++;
         aumentarNivel();
         inicializar_juego();
     } 

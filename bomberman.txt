@@ -1,0 +1,4 @@
+Errores: No se encuentra los siguientes archivos, para ello creo que se tiene que quitar el debug de la configuración del proyecto
+MSVCP140D.dll
+VCRUNTIME140D.dll
+ucrtbased.dll

@@ -84,7 +84,7 @@ class ControladorInterfaz {
 		map<tipo_opcion, hud*> opciones_ayuda;
 		tipo_opcion opcion_seleccionada;
 
-		tipo_setting tipoOpcion; //true si esta entre [COMENZAR_JUEGO,CERRAR_JUEGO], false si esta entre [CAMBIAR_CAMARA,ATRAS]
+		tipo_setting tipoOpcion; //Puede estar entre [COMENZAR_JUEGO,CERRAR_JUEGO], [CAMBIAR_CAMARA,ATRAS_CONFIGURACION] o [ATRAS_AYUDA]
 
 		void setMensajeEnComponente(string mensaje, TTF_Font* fuente, hud* componente);
 	public:
